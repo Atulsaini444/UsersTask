@@ -1,24 +1,31 @@
-import logo from './logo.svg';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers } from 'redux';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { userInfoReducer } from './redux/reducers';
 import './App.css';
+import Screen1 from './components/Screen1';
+import { ChakraProvider } from '@chakra-ui/react'
+import Screen2 from './components/Screen2';
+
+
+const rootReducer = combineReducers({
+  userInfo: userInfoReducer,
+});
+
+const store = createStore(rootReducer);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <ChakraProvider>
+        <BrowserRouter >
+        <Routes>
+          <Route path='/' element={<Screen1/>}/>
+          <Route path='/users' element={<Screen2/>}/>
+        </Routes>
+        </BrowserRouter>
+      </ChakraProvider>
+    </Provider>
   );
 }
 
