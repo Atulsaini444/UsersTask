@@ -1,4 +1,8 @@
-.wrapper{
+body {
+  background: #f1f1f1;
+}
+
+.wrapper {
   width: 60%;
   margin: 50px auto;
   border-radius: 10px;
@@ -10,9 +14,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 10px;
 }
 
-.cameraWrapper button, .marginTop {
+.cameraWrapper button,
+.marginTop {
   margin-top: 10px;
 }
 
@@ -21,16 +27,86 @@
   align-items: center;
 }
 
-.mainUserWrapper{
+.mainUserWrapper {
   padding: 10px;
   border-radius: 10px;
   display: flex;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  margin: 20px;
+  width: 70%;
+  margin: auto;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin-top: 10px;
+  word-break: break-all;
 }
 
 .imageContainer {
-  width: 250px;
+  min-width: 250px;
+  object-fit: cover;
   height: 200px;
   margin-right: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.imageContainer img {
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonWrapper {
+  display: flex;
+}
+
+.fetchLocation {
+  margin-left: 10px;
+}
+
+.screen2Wrapper {
+  padding: 30px 40px;
+}
+
+.textWrapper {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .mainUserWrapper {
+    width: 100%;
+  }
+
+}
+
+@media only screen and (max-width: 650px) {
+  .wrapper {
+    width: 80%;
+  }
+  .mainUserWrapper {
+    flex-direction: column;
+  }
+
+  .screen2Wrapper {
+    padding: 30px 15px;
+  }
+
+}
+
+@media only screen and (max-width: 400px) {
+  .wrapper {
+    width: 90%;
+  }
+
+  .buttonWrapper {
+    width: 50%;
+    flex-direction: column;
+  }
+
+  .fetchLocation {
+    margin-left: 0;
+    margin-top: 10px;
+  }
 }

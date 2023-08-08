@@ -6,14 +6,16 @@ import { useNavigate } from 'react-router-dom'
 const Screen2 = () => {
   const navigate = useNavigate()
   const userData = useSelector((state) => state.userInfo.userInfo)
-  console.log(userData  )
   const onBackClick = () => {
     navigate('/')
   }
   return (
-    <div>
-      <Button colorScheme='blue' onClick={onBackClick}>Back</Button>
-      {userData ? (
+    <div className='screen2Wrapper'>
+      <div className='header'>
+        <Text as='b' fontSize='2xl'>User List</Text>
+        <Button colorScheme='blue' marginLeft='20px' onClick={onBackClick}>Back</Button>
+      </div>
+      {userData.length > 0 ? (
         <>
           {userData.map((user) => {
             return (
@@ -22,9 +24,27 @@ const Screen2 = () => {
                   <img src={user.photo} alt="Captured" />
                 </div>
                 <div>
-                  <Text fontSize='2xl'>Device ID : {user.deviceid}</Text>
-                  <Text fontSize='2xl'>Latitude : {user.lat}</Text>
-                  <Text fontSize='2xl'>Longitude : {user.log}</Text>
+                  <div className='textWrapper'>
+                    <Text minWidth='110px' as='b' fontSize='xl' marginRight='10px'>Device ID :
+                    </Text>
+                    <Text fontSize='xl'>
+                      {user.deviceid}
+                    </Text>
+                  </div>
+                  <div className='textWrapper'>
+                  <Text minWidth='100px' as='b' fontSize='xl' marginRight='10px'>Latitude :
+                    </Text>
+                    <Text fontSize='xl'>
+                    {user.lat}
+                    </Text>
+                  </div>
+                  <div className='textWrapper'>
+                  <Text minWidth='100px' as='b' fontSize='xl' marginRight='10px'>Longitude : 
+                    </Text>
+                    <Text fontSize='xl'>
+                    {user.log}
+                    </Text>
+                  </div>
                 </div>
               </div>
             )

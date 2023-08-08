@@ -19,12 +19,12 @@ const CameraComponent = ({capturedImage, setCapturedImage}) => {
       {capturedImage ? (
         <>
         <img src={capturedImage} alt="Captured" />
-        <Button colorScheme='blue' onClick={reCaputeImage}>ReCapture</Button>
+        <Button colorScheme='blue' marginBottom='10px' onClick={reCaputeImage}>ReCapture</Button>
         </>
       ):(
           <>
         <Webcam audio={false} ref={webcamRef} height={250} width={400} />
-        <Button colorScheme='blue' onClick={captureImage}>Capture Photo</Button>
+        <Button colorScheme='blue' marginBottom='10px' onClick={captureImage}>Capture Photo</Button>
           </>
 
       )}

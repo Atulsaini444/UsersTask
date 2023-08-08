@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios'
 import CameraComponent from './CameraComponent'
 import DeviceIDComponent from './DeviceIDComponent'
@@ -17,6 +17,9 @@ const Screen1 = () => {
   const toast = useToast()
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  // this is the main submit button and api call
+
   const handleSubmit = async () => {
     setLoading(true)
     try {
@@ -31,11 +34,9 @@ const Screen1 = () => {
         },
         credentials: 'include',
       });
-
-      console.log(response)
       setLoading(false)
       const userData = { deviceid: deviceId, photo: capturedImage, lat: location.latitude, log: location.longitude };
-      if (response.status=='200') {
+      if (response.status == '200') {
         dispatch(saveUserInfo(userData)); // Save data using Redux
         toast({
           title: 'User information saved successfully',
@@ -59,11 +60,11 @@ const Screen1 = () => {
     }
   };
 
-  const onLatitudeChange = (e)=>{
-    setLocation({...location, latitude: e.target.value})
+  const onLatitudeChange = (e) => {
+    setLocation({ ...location, latitude: e.target.value })
   }
-  const onLongitudeChange = (e)=>{
-    setLocation({...location, longitude: e.target.value})
+  const onLongitudeChange = (e) => {
+    setLocation({ ...location, longitude: e.target.value })
   }
 
   const onDeviceIDChange = (e) => {
@@ -77,17 +78,22 @@ const Screen1 = () => {
   return (
     <div className='mainWrapper'>
       <div className='wrapper'>
-        <Button colorScheme='blue' onClick={handleSeeUser}>See users</Button>
+        <div className='header'>
+          <Text fontSize='2xl' as='b'>User Information</Text>
+          <Button colorScheme='blue' onClick={handleSeeUser}>See users</Button>
+        </div>
         <CameraComponent capturedImage={capturedImage} setCapturedImage={setCapturedImage} />
-        <DeviceIDComponent setDeviceId={setDeviceId} />
-        <LocationComponent location={location} setLocation={setLocation} />
+        <div className='buttonWrapper'>
+          <DeviceIDComponent setDeviceId={setDeviceId} />
+          <LocationComponent location={location} setLocation={setLocation} />
+        </div>
         <Text marginTop='10px'>Device ID : </Text>
         <Input value={deviceId} onChange={onDeviceIDChange} />
         <Text>Latitude : </Text>
         <Input value={location.latitude} onChange={onLatitudeChange} />
         <Text>Longitude : </Text>
         <Input value={location.longitude} onChange={onLongitudeChange} />
-        <Button colorScheme='blue' marginTop='10px' onClick={handleSubmit} isLoading = {loading}
+        <Button colorScheme='blue' marginTop='10px' onClick={handleSubmit} isLoading={loading}
           loadingText='Submitting' disabled={loading}>Save</Button>
       </div>
     </div>

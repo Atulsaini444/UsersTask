@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { userInfoReducer } from './redux/reducers';
 import './App.css';
 import Screen1 from './components/Screen1';
@@ -19,10 +19,10 @@ function App() {
     <Provider store={store}>
       <ChakraProvider>
         <BrowserRouter >
-        <Routes>
-          <Route path='/' element={<Screen1/>}/>
-          <Route path='/users' element={<Screen2/>}/>
-        </Routes>
+          <Routes>
+            <Route path='/' element={<Screen1 />} />
+            <Route path='/users' element={<Screen2 />} />
+          </Routes>
         </BrowserRouter>
       </ChakraProvider>
     </Provider>
